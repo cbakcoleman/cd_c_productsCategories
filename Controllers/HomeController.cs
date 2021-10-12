@@ -20,6 +20,8 @@ namespace cd_c_productsCategories.Controllers
                 .Include(p => p.ProductName)
                 .OrderByDescending(p => p.CreatedAt)
                 .ToList();
+
+            return View("Products");
         } 
     }
 }
