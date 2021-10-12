@@ -23,5 +23,8 @@ namespace cd_c_productsCategories.Models
         public decimal Price {get;set;}
 
         public List<ProductsHasCategories> Categories {get;set;}
+
+        public DateTime CreatedAt {get;set;} = DateTime.Now;
+        public DateTime UpdatedAt {get;set;} = DateTime.Now;
     }
 }

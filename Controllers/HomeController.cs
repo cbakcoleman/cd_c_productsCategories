@@ -12,5 +12,14 @@ namespace cd_c_productsCategories.Controllers
         {
             _context = context;
         }
+
+        [HttpGet("products")]
+        public IActionResult Products()
+        {
+            ViewBag.AllProducts = _context.Products
+                .Include(p => p.ProductName)
+                .OrderByDescending(p => p.CreatedAt)
+                .ToList();
+        } 
     }
 }
