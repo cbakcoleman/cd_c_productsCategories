@@ -1,5 +1,9 @@
+using System;
 using System.Linq;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using cd_c_productsCategories.Models;
 
@@ -16,10 +20,10 @@ namespace cd_c_productsCategories.Controllers
         [HttpGet("products")]
         public IActionResult Products()
         {
-            ViewBag.AllProducts = _context.Products
-                .Include(p => p.ProductName)
-                .OrderByDescending(p => p.CreatedAt)
-                .ToList();
+            ViewBag.AllProducts = _context.Products.
+                Include(p => p.ProductName).
+                OrderByDescending(p => p.CreatedAt).
+                ToList();
 
             return View("Products");
         } 
