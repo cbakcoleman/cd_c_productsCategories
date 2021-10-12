@@ -20,6 +20,7 @@ namespace cd_c_productsCategories.Models
 
         [Required(ErrorMessage = "Product price is required.")]
         [Display(Name = "Price: ")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Price {get;set;}
 
         public List<ProductsHasCategories> Categories {get;set;}
