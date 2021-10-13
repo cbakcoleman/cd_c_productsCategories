@@ -8,7 +8,7 @@
         <select asp-for="CategoryId" class="form-control">
             <option disabled selected hidden>--Please Select a Category--</option>
             @{
-                foreach (var p in ViewBag.AllCategories)
+                foreach (var p in ViewBag.NotProductCategories)
                 {
                     <option value="@p.CategoryId">@p.CategoryName</option>
                 }

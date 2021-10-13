@@ -89,30 +89,11 @@ namespace cd_c_productsCategories.Controllers
             .ThenInclude(prod => prod.Product)
             .SingleOrDefault(p => p.CategoryId == categoryId);
 
-            // ViewBag.NotCategoryProducts = _context.Products
-            // .Include(prod => prod.Categories)
-            // .ThenInclude(cat => cat.Category)
-            // .Where(prod => prod.Categories.CategoryId != categoryId)
-            // .ToList();
-
-            ViewBag.AllProducts = _context.Products
+            ViewBag.NotCategoryProducts = _context.Products
             .Include(prod => prod.Categories)
-            .OrderByDescending(p => p.CreatedAt).
-            ToList();
-
-
-            // List<Product> AllProducts = _context.Products
-            // .Include(prod => prod.Categories)
-            // .ThenInclude(cat => cat.CategoryId)
-            // .Where(cat => cat.Categories.)
-
-            // foreach(var prod in AllProducts)
-            // {
-            //     foreach(var cat in prod.Categories)
-            //     {
-            //         System.Console.WriteLine(cat.Category.CategoryName);
-            //     }
-            // }
+            .ThenInclude(cat => cat.Category)
+            .Where(prod => !prod.Categories.Any(c => c.CategoryId == categoryId))
+            .ToList();
             
             return View("categorieshasproducts");
         }
@@ -140,9 +121,10 @@ namespace cd_c_productsCategories.Controllers
             .ThenInclude(cat => cat.Category)
             .SingleOrDefault(p => p.ProductId == productId);
 
-            ViewBag.AllCategories = _context.Categories
+            ViewBag.NotProductCategories = _context.Categories
             .Include(cat => cat.Products)
-            .OrderByDescending(p => p.CreatedAt)
+            .ThenInclude(prod => prod.Category)
+            .Where(cat => !cat.Products.Any(p => p.ProductId == productId))
             .ToList();
 
             

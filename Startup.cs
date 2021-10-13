@@ -41,7 +41,7 @@ namespace cd_c_productsCategories
             app.UseSession();
             app.UseMvc();
 
-            app.UseRouting();
+            // app.UseRouting();
 
             // app.UseEndpoints(endpoints =>
             // {

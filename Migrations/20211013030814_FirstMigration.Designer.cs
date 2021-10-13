@@ -9,8 +9,8 @@ using cd_c_productsCategories.Models;
 namespace cd_c_productsCategories.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20211012033254_firstmigration")]
-    partial class firstmigration
+    [Migration("20211013030814_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
