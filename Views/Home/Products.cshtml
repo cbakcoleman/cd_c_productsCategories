@@ -52,7 +52,7 @@
                             @{
                                 foreach(var p in ViewBag.AllProducts)
                                 {
-                                    <p>@p.ProductName</p>
+                                    <p><a href="/products/@p.ProductId">@p.ProductName</a></p>
                                 }
                             }
 

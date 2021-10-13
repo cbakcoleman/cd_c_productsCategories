@@ -40,7 +40,7 @@
                             @{
                                 foreach(var p in ViewBag.AllCategories)
                                 {
-                                    <p>@p.CategoryName</p>
+                                    <p><a href="/categories/@p.CategoryId">@p.CategoryName</a></p>
                                 }
                             }
                         </div>
