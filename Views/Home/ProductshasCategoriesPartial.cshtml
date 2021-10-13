@@ -5,9 +5,8 @@
         <div>
             <span asp-validation-for="CategoryId"></span>
         </div>
-        <label asp-for="CategoryId"></label>
         <select asp-for="CategoryId" class="form-control">
-            <option disabled selected hidden>--Please Select a Product--</option>
+            <option disabled selected hidden>--Please Select a Category--</option>
             @{
                 foreach (var p in ViewBag.AllCategories)
                 {
@@ -17,8 +16,9 @@
         </select>
 
         <input asp-for="ProductId" value="@ViewBag.ThisProduct.ProductId" type="hidden">
-            
+
     </div>
 
     <input class="mt-3" type="submit" value="Add">
+    
 </form>
