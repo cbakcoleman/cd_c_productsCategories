@@ -1,0 +1,46 @@
+@* @model cd_c_productsCategories.Models.Category *@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Categories have Products</title>
+</head>
+<body>
+    <div class="container"> <!-- BEGIN WHOLE PAGE CONTAINER -->
+        <div class="row"> <!-- BEGIN HEADER ROW -->
+            <h4>@ViewBag.thiscategory.CategoryName</h4>
+        </div> <!-- END HEADER ROW -->
+
+        <div class="row"> <!-- BEGIN MAIN BODY ROW -->
+            <div class="col"> <!-- BEGIN PRODUCT LIST COLUMN -->
+                <div class="container">
+                    <h4>Products:</h4>
+                    <div class="card m-1 p-3">
+                        @{
+                            foreach(var prod in ViewBag.thiscategory.Products)
+                            {
+                                <p>@prod.Product.ProductName</p>
+                            }
+                        }
+                    </div>
+                </div>
+            </div> <!-- BEGIN PRODUCT LIST COLUMN -->
+
+            <div class="col"> <!-- BEGIN ADD PRODUCT TO CATEGORY FORM COLUMN -->
+                <div class="container">
+                    <h4>Add Product</h4>
+                    <partial name="CategorieshasProductsPartial" />
+                </div>
+
+
+            </div> <!-- END ADD PRODUCT TO CATEGORY FORM COLUMN -->
+        </div> <!-- BEGIN MAIN BODY ROW -->
+
+
+    </div> <!-- END WHOLE PAGE CONTAINER -->
+</body>
+</html>

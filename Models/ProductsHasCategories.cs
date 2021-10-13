@@ -9,6 +9,7 @@ namespace cd_c_productsCategories.Models
         [Key]
         public int ProductsHasCategoriesId {get;set;}
 
+        [Required(ErrorMessage = "You must choose a product")]
         public int ProductId {get;set;}
         public Product Product {get;set;}
 

@@ -80,5 +80,88 @@ namespace cd_c_productsCategories.Controllers
                 return View("categories", category);
             }
         }
+
+        [HttpGet("categories/{categoryId}")]
+        public IActionResult thiscategory(int categoryId)
+        {
+            ViewBag.thiscategory = _context.Categories
+            .Include(cat => cat.Products)
+            .ThenInclude(prod => prod.Product)
+            .SingleOrDefault(p => p.CategoryId == categoryId);
+
+            // ViewBag.NotCategoryProducts = _context.Products
+            // .Include(prod => prod.Categories)
+            // .ThenInclude(cat => cat.Category)
+            // .Where(prod => prod.Categories.CategoryId != categoryId)
+            // .ToList();
+
+            ViewBag.AllProducts = _context.Products
+            .Include(prod => prod.Categories)
+            .OrderByDescending(p => p.CreatedAt).
+            ToList();
+
+
+            // List<Product> AllProducts = _context.Products
+            // .Include(prod => prod.Categories)
+            // .ThenInclude(cat => cat.CategoryId)
+            // .Where(cat => cat.Categories.)
+
+            // foreach(var prod in AllProducts)
+            // {
+            //     foreach(var cat in prod.Categories)
+            //     {
+            //         System.Console.WriteLine(cat.Category.CategoryName);
+            //     }
+            // }
+            
+            return View("categorieshasproducts");
+        }
+        
+        [HttpPost("addproducttocategory")]
+        public IActionResult addproducttocategory(ProductsHasCategories productshascategories)
+        {
+            if(ModelState.IsValid)
+            {
+                _context.Add(productshascategories);
+                _context.SaveChanges();
+                return Redirect($"/categories/{productshascategories.CategoryId}");
+            }
+            else
+            {
+                return View("categorieshasproducts", productshascategories);
+            }
+        }
+
+        [HttpGet("products/{productId}")]
+        public IActionResult thispoduct(int productId)
+        {
+            ViewBag.thisproduct = _context.Products
+            .Include(prod => prod.Categories)
+            .ThenInclude(cat => cat.Category)
+            .SingleOrDefault(p => p.ProductId == productId);
+
+            ViewBag.AllCategories = _context.Categories
+            .Include(cat => cat.Products)
+            .OrderByDescending(p => p.CreatedAt)
+            .ToList();
+
+            
+            return View("productshascategories");
+        }
+
+        [HttpPost("addcategorytoproduct")]
+        public IActionResult addcategorytoproduct(ProductsHasCategories productshascategories)
+        {
+            if(ModelState.IsValid)
+            {
+                _context.Add(productshascategories);
+                _context.SaveChanges();
+                return Redirect($"/products/{productshascategories.ProductId}");
+            }
+            else
+            {
+                return View("productshascategories", productshascategories);
+            }
+        }
     }
 }
